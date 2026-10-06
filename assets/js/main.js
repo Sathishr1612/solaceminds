@@ -65,7 +65,7 @@
     name: 'Please enter your full name.', phone: 'Please enter a valid 10-digit mobile number.', email: 'Please enter a valid email address.',
     age: 'Please enter a valid age.', date: 'Please choose a date from today onwards.', service: 'Please choose a service.', mode: 'Please choose a consultation mode.',
     consent: 'Please confirm to continue.', org: 'Please enter your organization name.', orgtype: 'Please choose an organization type.', topic: 'Please choose a topic.',
-    location: 'Please choose online or offline.'
+    location: 'Please choose online or offline.', city: 'Please enter your city.'
   };
   function resetForm(form) {
     if (!form) return;
@@ -92,7 +92,7 @@
       });
       if (!ok) { first.focus(); return; }
       var data = new FormData(form), lines = [], kind = form.getAttribute('data-form');
-      lines.push(kind === 'workshop' ? 'Hello Solace Minds, I would like to request a workshop.' : 'Hello Solace Minds, I would like to book an appointment.');
+      lines.push(kind === 'workshop' ? 'Hello Solace Minds, I would like to request a workshop.' : kind === 'callback' ? 'Hello Solace Minds, please call me back.' : 'Hello Solace Minds, I would like to book an appointment.');
       $$('[data-label]', form).forEach(function (el) {
         var v = el.type === 'radio' ? (data.get(el.name) || '') : (el.type === 'checkbox' ? '' : el.value.trim());
         if (el.type === 'radio' && el !== $('input[name="' + el.name + '"]', form)) return;
@@ -104,7 +104,7 @@
       var first_name = (data.get('name') || '').toString().trim().split(' ')[0];
       $('.sent-title', sent).textContent = 'Thank you' + (first_name ? ', ' + first_name : '') + '.';
       $('.wa-send', sent).href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(text);
-      $('.mail-send', sent).href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(kind === 'workshop' ? 'Workshop enquiry' : 'Appointment request') + '&body=' + encodeURIComponent(text);
+      $('.mail-send', sent).href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(kind === 'workshop' ? 'Workshop enquiry' : kind === 'callback' ? 'Callback request' : 'Appointment request') + '&body=' + encodeURIComponent(text);
       form.hidden = true;
       var intro = $('.form-intro', wrap.parentNode); if (intro) intro.hidden = true;
       sent.hidden = false;
