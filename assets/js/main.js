@@ -36,7 +36,7 @@
       es.forEach(function (e) {
         if (!e.isIntersecting) return; io.unobserve(e.target);
         var el = e.target, n = +el.dataset.count, sf = el.dataset.suffix || '', t0 = null;
-        function f(t) { if (!t0) t0 = t; var k = Math.min((t - t0) / 1800, 1), v = Math.round(n * (1 - Math.pow(1 - k, 3))); el.textContent = v.toLocaleString('en-IN') + sf; if (k < 1) requestAnimationFrame(f); }
+        function f(t) { if (!t0) t0 = t; var k = Math.min((t - t0) / 1800, 1), v = Math.round(n * (1 - Math.pow(1 - k, 3))); el.innerHTML = v.toLocaleString('en-IN') + (sf ? '<span class="sf">' + sf + '</span>' : ''); if (k < 1) requestAnimationFrame(f); }
         requestAnimationFrame(f);
       });
     }, { threshold: .5 });

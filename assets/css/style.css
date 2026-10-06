@@ -855,6 +855,10 @@ p {
   color: var(--ink-2)
 }
 
+.hero p.body b {
+  color: var(--ink)
+}
+
 .hero p.body+p.body {
   padding-left: 16px;
   border-left: 2px solid var(--haldi)
@@ -6259,5 +6263,268 @@ button svg {
 @media (max-width: 900px) {
   .ct-media {
     justify-self: center
+  }
+}
+
+/* plain page banners (Blogs, Gallery, Privacy): line the intro up with the heading, not below it */
+.p-hero .head-split {
+  align-items: center
+}
+
+.p-hero .head-split h1 {
+  margin-bottom: 0
+}
+
+/* home: impact stats band: four equal, centred stats */
+.strip.band-deco {
+  padding-block: clamp(10px, 1.4vw, 18px);
+  background: linear-gradient(120deg, var(--ink) 0%, var(--teal-d) 100%)
+}
+
+.strip .wrap {
+  grid-template-columns: repeat(4, minmax(0, 1fr))
+}
+
+.strip .st,
+.strip .st:first-child {
+  padding: 26px 16px;
+  text-align: center
+}
+
+.strip .num .sf {
+  margin-left: 2px;
+  color: #F1CF8B
+}
+
+.strip .lbl {
+  font-size: .9rem;
+  letter-spacing: .01em
+}
+
+@media (max-width: 1024px) {
+  .strip .wrap {
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+  }
+
+  .strip .st:nth-child(3) {
+    padding-left: 16px
+  }
+}
+
+/* ---------- about: who we are ---------- */
+.wwa-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(40px, 6vw, 96px);
+  align-items: center
+}
+
+/* photo pairing: large arch + smaller overlapping photo */
+.wwa-media {
+  position: relative;
+  isolation: isolate;
+  padding: 0 clamp(40px, 6vw, 80px) clamp(56px, 7vw, 90px) 0
+}
+
+.wwa-media::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -18px;
+  left: -18px;
+  right: calc(clamp(40px, 6vw, 80px) + 18px);
+  bottom: calc(clamp(56px, 7vw, 90px) + 18px);
+  border-radius: 999px 999px var(--r) var(--r);
+  border: 1.5px solid rgba(31, 138, 125, .45);
+  pointer-events: none
+}
+
+.wwa-main {
+  aspect-ratio: 4/4.6;
+  box-shadow: 0 30px 60px -30px rgba(20, 48, 44, .45)
+}
+
+.wwa-sub {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 52%;
+  aspect-ratio: 4/3;
+  border-radius: var(--r);
+  border: 6px solid var(--ivory);
+  box-shadow: var(--shadow)
+}
+
+.wwa-copy .lead {
+  color: var(--ink);
+  margin-bottom: 14px
+}
+
+.wwa-list {
+  list-style: none;
+  margin: 24px 0;
+  padding: 20px 0;
+  border-block: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 24px
+}
+
+.wwa-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  color: var(--ink)
+}
+
+.wwa-list svg {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  padding: 5px;
+  border-radius: 50%;
+  background: var(--mint);
+  color: var(--teal-d)
+}
+
+@media (max-width: 900px) {
+  .wwa-grid {
+    grid-template-columns: 1fr
+  }
+
+  .wwa-media {
+    max-width: 520px;
+    width: 100%;
+    margin-inline: auto
+  }
+}
+
+@media (max-width: 480px) {
+  .wwa-list {
+    grid-template-columns: 1fr
+  }
+
+  .wwa-media::before {
+    top: -10px;
+    left: -10px
+  }
+}
+
+/* home: tighter spacing around "Who we help" */
+#who.sec:has(.aud-line) {
+  padding-block: clamp(48px, 5vw, 72px) clamp(16px, 2vw, 24px)
+}
+
+#who:has(.aud-line) .head {
+  margin-bottom: clamp(20px, 2.5vw, 32px)
+}
+
+#who .aud-line {
+  padding: 10px 0 14px
+}
+
+#who:has(.aud-line)+.sec-sm {
+  padding-top: clamp(16px, 2vw, 24px)
+}
+
+/* ---------- home hero: phone-only photo banner (desktop untouched) ---------- */
+@media (max-width: 680px) {
+  .hero {
+    margin-inline: 8px;
+    border-radius: 0 0 28px 28px;
+    padding-bottom: 40px;
+    margin-bottom: 12px
+  }
+
+  /* the meditation photo becomes the banner background */
+  .hero::before {
+    background: var(--ink) url("../img/socale-meditation.webp") 50% 0/100% auto no-repeat;
+    opacity: 1
+  }
+
+  /* deep green wash: light at the top so the photo shows, solid behind the text */
+  .hero::after {
+    /* stops follow the photo height (photo is 1152x1366, shown full width) so it melts into the green */
+    background: linear-gradient(180deg, rgba(14, 36, 33, .3) 0, rgba(14, 36, 33, .15) calc(30vw), rgba(14, 36, 33, .55) calc(62vw), rgba(14, 36, 33, .9) calc(92vw), var(--ink) calc(118vw - 19px))
+  }
+
+  /* the photo grid would repeat the background image */
+  .hero-art {
+    display: none
+  }
+
+  .hero-copy {
+    /* eyebrow lands where the photo starts fading */
+    padding-top: calc(80vw - 150px)
+  }
+
+  .hero .eyebrow {
+    color: #F1CF8B
+  }
+
+  .hero h1 {
+    color: var(--on-dark);
+    margin: 14px 0 16px
+  }
+
+  .hero h1 em {
+    color: #8FD3C6
+  }
+
+  .hero .lead {
+    color: var(--on-dark)
+  }
+
+  .hero p.body {
+    color: var(--on-dark-2)
+  }
+
+  .hero p.body b {
+    color: #fff
+  }
+
+  .hero .ctas {
+    margin-top: 24px
+  }
+
+  .hero .btn-primary {
+    background: var(--on-dark);
+    color: var(--ink)
+  }
+
+  .hero .btn-ghost {
+    color: var(--on-dark);
+    border-color: rgba(243, 239, 230, .4)
+  }
+}
+
+/* ---------- home "About" collage: phone spacing ---------- */
+@media (max-width: 680px) {
+  /* the heavy ring crowds the stats band above; the gold sun is enough on small screens */
+  .collage::before {
+    display: none
+  }
+
+  .collage {
+    margin-top: 8px
+  }
+
+  .collage .c {
+    padding: 16px 14px;
+    justify-content: center
+  }
+
+  .collage .c span {
+    font-size: .8rem;
+    line-height: 1.45
+  }
+}
+
+/* column that stays in view while its neighbour scrolls: desktop only */
+@media (min-width: 1025px) {
+  .sticky-col {
+    position: sticky;
+    top: 130px
   }
 }
