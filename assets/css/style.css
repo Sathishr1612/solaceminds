@@ -5,6 +5,7 @@
    (arched window) as the recurring frame for photography.
    ===================================================================== */
 :root {
+  --tb: 40px;
   --ivory: #F8F5EF;
   --sand: #EFE8DC;
   --paper: #FFFFFF;
@@ -46,7 +47,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 118px;
+  scroll-padding-top: calc(118px + var(--tb));
   -webkit-text-size-adjust: 100%
 }
 
@@ -354,7 +355,7 @@ p {
 /* floating pill header: transparent sticky shell, white rounded bar inside */
 .site-head {
   position: sticky;
-  top: 0;
+  top: var(--tb);
   z-index: 50;
   padding: 14px var(--gut);
   transition: padding .35s
@@ -383,7 +384,9 @@ p {
   color: var(--on-dark-2);
   font-size: .78rem;
   letter-spacing: .01em;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 51;
   overflow: hidden
 }
 
@@ -1633,7 +1636,7 @@ p {
 
 .why-media {
   position: sticky;
-  top: 120px
+  top: calc(120px + var(--tb))
 }
 
 .why-media .ph {
@@ -2038,7 +2041,7 @@ p {
 
 .faq-aside {
   position: sticky;
-  top: 120px
+  top: calc(120px + var(--tb))
 }
 
 .faq-aside .help {
@@ -2795,7 +2798,7 @@ p {
 
 .portrait {
   position: sticky;
-  top: 120px;
+  top: calc(120px + var(--tb));
   isolation: isolate
 }
 
@@ -3005,7 +3008,7 @@ p {
 /* section tabs: solid cream band under the header, simple underline tabs */
 .subnav {
   position: sticky;
-  top: 90px;
+  top: calc(90px + var(--tb));
   z-index: 30;
   background: rgba(255, 255, 255, .94);
   backdrop-filter: saturate(1.4) blur(14px);
@@ -3085,7 +3088,7 @@ html:has(.subnav) .site-head::before {
 }
 
 html:has(.subnav) {
-  scroll-padding-top: 156px
+  scroll-padding-top: calc(156px + var(--tb))
 }
 
 .svc-sec {
