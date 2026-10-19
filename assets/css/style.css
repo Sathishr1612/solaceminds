@@ -5944,6 +5944,22 @@ dialog.book[open] {
     height: 46px
   }
 
+  .nav {
+    gap: 10px
+  }
+
+  .nav-cta .btn-ghost {
+    display: none
+  }
+
+  .brand {
+    min-width: 0
+  }
+
+  .brand img {
+    max-width: 100%
+  }
+
   .subnav {
     top: 74px
   }
